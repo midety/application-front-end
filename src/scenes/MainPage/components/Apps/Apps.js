@@ -1,11 +1,11 @@
 import { Container } from "./style";
 import { AppContainer } from "../App";
 
-export const Apps = ({ list }) => {
+export const Apps = ({ list = [] }) => {
   return (
     <Container>
-      {list.map(({ imgUrl, siteUrl }, index) => (
-        <AppContainer imgUrl={imgUrl} siteUrl={siteUrl} key={index} />
+      {list.map(({ id, img, url }, index) => (
+        <AppContainer id={id} img={img} url={url} key={index} />
       ))}
     </Container>
   );

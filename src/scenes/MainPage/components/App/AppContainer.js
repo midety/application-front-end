@@ -1,19 +1,22 @@
 import { App } from "./App";
 import { useEffect, useState } from "react";
+import { useFetch } from "api/Fetch";
 
-export const AppContainer = ({ imgUrl, siteUrl }) => {
-  const [isOnline, setIsOnline] = useState(false);
+export const useIsAvailable = (url) => {
+  const METHOD = "GET";
+
+  const [isAvailable, setIsAvailable] = useState(false);
+  const [isLoading, result] = useFetch(METHOD, url);
 
   useEffect(() => {
-    fetch(siteUrl).then(
-      () => {
-        setIsOnline(true);
-      },
-      () => {
-        setIsOnline(false);
-      }
-    );
-  }, [siteUrl]);
+    setIsAvailable(!!result);
+  }, [result]);
 
-  return <App imgUrl={imgUrl} isOnline={isOnline} siteUrl={siteUrl} />;
+  return [isLoading, isAvailable];
+};
+
+export const AppContainer = ({ id, img, url }) => {
+  const [isLoading, isAvailable] = useIsAvailable(url);
+
+  return <App img={img} isOnline={isAvailable} url={url} />;
 };
