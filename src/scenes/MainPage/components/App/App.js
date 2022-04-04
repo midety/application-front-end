@@ -3,8 +3,8 @@ import { useState } from "react";
 import open from "./images/open.png";
 import lock from "./images/lock.png";
 
-const LinkWrapper = ({ isOnline, url, children }) =>
-  isOnline ? (
+const LinkWrapper = ({ isAvailable, url, children }) =>
+  isAvailable ? (
     <Link href={url} target="_blank" rel="noreferrer">
       {children}
     </Link>
@@ -12,7 +12,7 @@ const LinkWrapper = ({ isOnline, url, children }) =>
     children
   );
 
-export const App = ({ img, locked, isOnline, url }) => {
+export const App = ({ img, locked, isAvailable, url }) => {
   const [image, setImage] = useState(locked ? lock : img);
 
   return (
@@ -20,9 +20,9 @@ export const App = ({ img, locked, isOnline, url }) => {
       onMouseEnter={() => (locked ? null : setImage(open))}
       onMouseLeave={() => (locked ? null : setImage(img))}
     >
-      <LinkWrapper isOnline={isOnline} url={url}>
+      <LinkWrapper isAvailable={isAvailable} url={url}>
         <Indicator
-          status={locked ? "unreachable" : isOnline ? "online" : "offline"}
+          status={locked ? "unreachable" : isAvailable ? "online" : "offline"}
         />
 
         <AppImage draggable="false" src={image} />
