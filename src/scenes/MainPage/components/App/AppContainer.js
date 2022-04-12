@@ -18,5 +18,5 @@ export const useIsAvailable = (url) => {
 export const AppContainer = ({ id, img, url }) => {
   const [isLoading, isAvailable] = useIsAvailable(url);
 
-  return <App img={img} isOnline={isAvailable} url={url} />;
+  return <App img={img} isAvailable={isAvailable} url={url} />;
 };
