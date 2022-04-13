@@ -1,6 +1,6 @@
 import { App } from "./App";
 import { useEffect, useState } from "react";
-import { useFetch } from "api/Fetch";
+import { useFetch } from "api/custom-hook/Fetch";
 
 export const useIsAvailable = (url) => {
   const METHOD = "GET";
