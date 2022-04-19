@@ -1,9 +1,9 @@
 import { createAction } from "redux-actions";
 
 export const getApplicationGroups = createAction("GET_APPLICATION_GROUPS");
-export const getApplicationGroupsSucceeded = createAction(
-  "GET_APPLICATION_GROUPS_SUCCEEDED"
+export const getApplicationGroupsSuccess = createAction(
+  "GET_APPLICATION_GROUPS_SUCCESS"
 );
-export const getApplicationGroupsFailed = createAction(
-  "GET_APPLICATION_GROUPS_FAILED"
+export const getApplicationGroupsError = createAction(
+  "GET_APPLICATION_GROUPS_ERROR"
 );
