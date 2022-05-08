@@ -1,16 +1,25 @@
-import { handleActions } from "redux-actions";
-import { getApplicationGroupsSucceeded } from "./action";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
-const DEFAULT_STATE = {
-  groups: [],
-};
+export const applicationGroupsAdapter = createEntityAdapter({
+  selectId: (ApplicationGroup) => ApplicationGroup.id,
+});
 
-const handlers = {
-  [getApplicationGroupsSucceeded]: (state, action) => {
-    const groups = action.payload;
-
-    return { ...state, groups };
+const applicationGroupsSlice = createSlice({
+  name: "Application Groups",
+  initialState: applicationGroupsAdapter.getInitialState(),
+  reducers: {
+    getApplicationGroupsRequest() {},
+    getApplicationGroupsSuccess(state, action) {
+      applicationGroupsAdapter.addMany(state, action.payload);
+    },
+    getApplicationGroupsError() {},
   },
-};
+});
 
-export default handleActions(handlers, DEFAULT_STATE);
+export const {
+  getApplicationGroupsSuccess,
+  getApplicationGroupsRequest,
+  getApplicationGroupsError,
+} = applicationGroupsSlice.actions;
+
+export default applicationGroupsSlice.reducer;
