@@ -1,8 +1,6 @@
 import { all } from "redux-saga/effects";
-import groups from "./application-groups/saga";
+import applicationGroups from "./application-groups/saga";
 
-function* rootSaga() {
-  yield all([groups()]);
+export default function* rootSaga() {
+  yield all([applicationGroups()]);
 }
-
-export default rootSaga;
